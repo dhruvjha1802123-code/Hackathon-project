@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <link rel="stylesheet" href="test.css">
+    
+</head>
+<body>
+    <div class="header-dashboard">
+        <button onclick="window.location.href='dashboard.html'" class="dashboard">Dashboard</button>
+        <button onclick="window.location.href='test.html'" class="timetable">Timetable</button>
+        <button onclick="window.location.href='add-class.html'" class="logout">Add class</button>
+        <button onclick="window.location.href='faculty-workload.html'" class="logout">Logout</button>
+    </div>
+
+    <div class="dashboard-welcome">
+        <h1>Welcome to your Dashboard</h1>
+        <p>Here you can manage your timetable and classes.</p>
+    </div>
+
+    <div class="dashboard-content">
+        <h1 class="class-display">Classes <br><span class="class-value">3</span> </h1>
+        <h1 class="faculty-available">Teachers available <br><span class="teacher-value">3</span> </h1>
+        <h1>subjects <br><span class="subjects-value">3</span> </h1>
+        <h1>Conflict <br><span class="conflict-value">3</span> </h1>
+        <h1 onclick="window.location.href='faculty-workload.html'">Faculty workload</h1>
+        <!-- <button onclick="window.location.href='test.html'" class="view-timetable">View Timetable</button> -->
+    </div>
+
+    <div class="footer-dashboard">
+        <p>&copy; 2024 Timetable App. All rights reserved.</p>
+    </div>
+
+    <script src="TIMETABLE/timetable.js"></script>
+    <!-- <script src="TIMETABLE/render_timetable.js"></script> -->
+    <script src="TIMETABLE/time_dashboard.js"></script>
+</body>
+</html>

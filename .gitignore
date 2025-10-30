@@ -1,0 +1,29 @@
+# VS Code
+.vscode/
+.code-workspace
+
+# IDE files
+.idea/
+*.sublime-project
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Node/npm
+node_modules/
+package-lock.json (optional - usually commit this)
+npm-debug.log
+
+# Environment variables
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.log
+.cache/
+
+# Build artifacts
+dist/
+build/

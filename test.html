@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <link rel="stylesheet" href="test.css">
+    
+</head>
+<body>
+  <div class="header-dashboard">
+        <button onclick="window.location.href='dashboard.html'" class="dashboard">Dashboard</button>
+        <button onclick="window.location.href='test.html'" class="contact">Timetable</button>
+        <button onclick="window.location.href='add-class.html'" class="logout">Add class</button>
+        <button onclick="window.location.href='index.html'" class="logout">Logout</button>
+    </div>
+
+<form id="classForm">
+  <label for="ClassField">Enter Number of Classes:</label>
+  <input
+    type="number"
+    min="1"
+    maxlength="4"
+    required
+    id="ClassField"
+    class="ClassField"
+  />
+  <input type="submit" value="Submit" class="ClassSubmit" />
+</form>
+
+<select id="class-select">
+  <option value="0">Class 1</option>
+  <option value="1">Class 2</option>
+  <option value="2">Class 3</option>
+  <option value="3">Class 4</option>
+</select>
+
+<button id="generate-timetable-button">Generate Timetable</button>
+
+
+  <!-- 🧱 Template for the WHOLE timetable -->
+<template id="timetable-template">
+  <div class="timetable-container">
+    <h2 class="class-name"></h2>
+    <table class="timetable-table">
+      <thead>
+        <tr>
+          <th colspan="7" class="table-header"></th>
+        </tr>
+        <tr class="header">
+          <th>Time</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+        </tr>
+      </thead>
+      <tbody class="timetable-body">
+        <!-- rows will be inserted by JS -->
+      </tbody>
+    </table>
+  </div>
+</template>
+
+  <!-- Output container -->
+  <div id="all-timetables"></div>
+  <a href="about.html">Go to About Page</a>
+  <a href="./contact.html">Contact Us</a>
+    <script src="TIMETABLE/timetable.js">
+    </script>
+    <script src="TIMETABLE/render_timetable.js"></script>
+</body>
+</html>
+<!-- 
+<form action="http://www.foo.com" method="get">
+    <div>
+        <label for="say">What greeting do you want to say?</label>
+        <input name="say" id="say" value="Hi" />
+    </div>
+    <div>
+        <label for="to">Who do you want to say it to?</label>
+        <input name="to" id="to" value="Mom" />
+    </div>
+    <div>
+        <button>Send my greetings</button>
+    </div>
+</form> -->
