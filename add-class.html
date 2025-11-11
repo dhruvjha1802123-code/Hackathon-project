@@ -7,178 +7,164 @@
     <title>Document</title>
     <link rel="stylesheet" href="add-class.css">
     <!-- <link rel="stylesheet" href="test.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <header>
-        <div class="header-dashboard">
-        <button onclick="window.location.href='index.html'" class="dashboard">Dashboard</button>
-        <button onclick="window.location.href='test.html'" class="contact">Timetable</button>
-        <button onclick="window.location.href='add-class.html'" class="logout">Add class</button>
-        <button onclick="window.location.href='index.html'" class="logout">Logout</button>
-        </div>
-        <h1>AI Timetable Generator</h1>
-    </header>
-
-    <div class="container">
-        <section>
-            <h2> Basic Details</h2>
-            <div>
-                <div>
-                    <form id="classForm">
-                    <label for="ClassField">Enter Number of Classes:</label>
-                    <input
-                        type="number"
-                        min="1"
-                        max="4"
-                        maxlength="4"
-                        required
-                        id="ClassField"
-                        class="ClassField"
-                    />
-                    <input type="submit" value="Submit" class="ClassSubmit" />
-                    </form>
-
-                </div>
-                <div>
-                    <label>Number of Subjects</label>
-                    <input type="number" id="subjects">
-                </div>
-                <div>
-                    <label>Number of Faculties</label>
-                    <input type="number" id="faculties">
-                </div>
-                <div>
-                    <label>Working Days</label>
-                    <select id="days">
-                        <option>Mon-Fri</option>
-                        <option>Mon-Sat</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Periods per Day</label>
-                    <input type="number" id="periods">
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2> Subjects & Faculties</h2>
-            <div id="subjectTableContainer">
-                <table id="subjectTable">
-                    <thead>
-                        <tr>
-                            <th>Current Subject</th>
-                            
-                            <th>Current Faculty</th>
-                            
-                            <th>Current Hours</th>
-                            
-                            <th>Lectures/Week</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" class="curr_subject"></td>
-                            <td><input type="text" class="curr_faculty"></td>
-                            <td><input type="number" class="curr_time"></td>
-                            <td><input type="number"></td>
-                            <td><button>X</button></td>
-                        </tr>
-                    </tbody>
-
-                    <thead>
-                        <tr>
-                            <th>Change to Subject: </th>
-                            <th>Change to Faculty: </th>
-                            <th>Change to Hours:</th>
-
-                            <th>Lectures/Week</th>
-                            <th>Remove</th>
-                        </tr>
-
-                    </thead>
-                                        <tbody>
-                        <tr>
-                            <td><input type="text" class="to_subject"></td>
-                            <td><input type="text" class="to_faculty"></td>
-                            <td><input type="number" class="to_time"></td>
-                            <td><input type="number"></td>
-                            <td><button>X</button></td>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </tbody>
-                    
-                </table>
-                <button class="change-info"> submit </button>
-                <button>+ Add Row</button>
-            </div>
-        </section>
-
-        <section>
-            <h2>Generate Timetable</h2>
-            
-            <select id="class-select">
-            <option value="0">Class 1</option>
-            <option value="1">Class 2</option>
-            <option value="2">Class 3</option>
-            <option value="3">Class 4</option>
-            </select>
-
-            <button id="generate-timetable-button">Generate Timetable</button>
-            <!-- 🧱 Template for the WHOLE timetable -->
-            <template id="timetable-template">
-                <div class="timetable-container">
-                <h2 class="class-name"></h2>
-                <table class="timetable-table">
-                    <thead>
-                    <tr>
-                        <th colspan="7" class="table-header"></th>
-                    </tr>
-                    <tr class="header">
-                        <th>Time</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                    </tr>
-                    </thead>
-                    <tbody class="timetable-body">
-                    <!-- rows will be inserted by JS -->
-                    </tbody>
-                </table>
-                </div>
-            </template>
-
-            <!-- Output container -->
-            <div id="all-timetables"></div>
-        </section>
-
-        <section id="WorkloadSection" style="display: none;">
-            <h2>Workload distribution</h2>
-            <div id="workload-content">
-                <!-- Workload details will be populated here -->
-                <template>
-                   <div class="vertical-row">
-
-                   </div>
-
-                   <div class="graph-display">
-
-                   </div> 
-                   <div class="horiz-column">
-                       <h3 class="workload-subject"></h3>
-                       <p class="workload-details"></p>
-                   </div>
-                </template>
-            </div>
-        </section>
+<header>
+    <div class="header-dashboard">
+    <button onclick="window.location.href='index.html'" class="dashboard">Dashboard</button>
+    <button onclick="window.location.href='test.html'" class="contact">Timetable</button>
+    <button onclick="window.location.href='add-class.html'" class="logout">Add class</button>
+    <button onclick="window.location.href='index.html'" class="logout">Logout</button>
     </div>
-    <script src="TIMETABLE/timetable.js"></script>
-    <script src="TIMETABLE/render_timetable.js"></script>
+    <h1>AI Timetable Generator</h1>
+</header>
+
+<div class="container">
+    <section>
+        <h2> Basic Details</h2>
+        <div>
+            <div>
+                <form id="classForm">
+                <label for="ClassField">Enter Number of Classes:</label>
+                <input
+                    type="number"
+                    min="1"
+                    max="4"
+                    maxlength="4"
+                    required
+                    id="ClassField"
+                    class="ClassField"
+                />
+                <input type="submit" value="Submit" class="ClassSubmit" />
+                </form>
+            </div>
+            <div>
+                <label>Number of Subjects</label>
+                <input type="number" id="subjects">
+                
+            </div>
+            <div>
+                <label>Number of Faculties</label>
+                <input type="number" id="faculties">
+            </div>
+            <div>
+                <label>Working Days</label>
+                <select id="days">
+                    <option>Mon-Fri</option>
+                    <option>Mon-Sat</option>
+                </select>
+            </div>
+            <div>
+                <label>Periods per Day</label>
+                <input type="number" id="periods">
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2> Subjects & Faculties</h2>
+        <div id="subjectTableContainer">
+            <table id="subjectTable">
+                <thead>
+                    <tr>
+                        <th>Current Subject</th>
+                        
+                        <th>Current Faculty</th>
+                        
+                        <th>Current Hours</th>
+                        
+                        <th>Lectures/Week</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" class="curr_subject"></td>
+                        <td><input type="text" class="curr_faculty"></td>
+                        <td><input type="number" class="curr_time"></td>
+                        <td><input type="number"></td>
+                        <td><button>X</button></td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>Change to Subject: </th>
+                        <th>Change to Faculty: </th>
+                        <th>Change to Hours:</th>
+                        <th>Lectures/Week</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                                    <tbody>
+                    <tr>
+                        <td><input type="text" class="to_subject"></td>
+                        <td><input type="text" class="to_faculty"></td>
+                        <td><input type="number" class="to_time"></td>
+                        <td><input type="number"></td>
+                        <td><button>X</button></td>
+                    </tr>
+                    <tr>
+                    </tr>
+                </tbody>
+                
+            </table>
+            <button class="change-info"> submit </button>
+            <button>+ Add Row</button>
+        </div>
+    </section>
+    <section>
+        <h2>Generate Timetable</h2>
+        
+        <select id="class-select">
+        <option value="0">Class 1</option>
+        <option value="1">Class 2</option>
+        <option value="2">Class 3</option>
+        <option value="3">Class 4</option>
+        </select>
+        <button id="generate-timetable-button">Generate Timetable</button>
+        <!-- 🧱 Template for the WHOLE timetable -->
+        <template id="timetable-template">
+            <div class="timetable-container">
+            <h2 class="class-name"></h2>
+            <table class="timetable-table">
+                <thead>
+                <!-- <tr>
+                    <th colspan="7" class="table-header"></th>
+                </tr> -->
+                <tr class="header">
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+                </thead>
+                <tbody class="timetable-body">
+                <!-- rows will be inserted by JS -->
+                </tbody>
+            </table>
+            </div>
+        </template>
+        <!-- Output container -->
+        <div id="all-timetables"></div>
+    </section>
+    <section id="WorkloadSection" style="display: none;">
+        <h2>📊 Teacher Workload Distribution</h2>
+        <div id="workload-content">
+            <div class="chart-wrapper">
+                <canvas id="workloadChart"></canvas>
+            </div>
+            
+            <div class="stats-grid" id="statsContainer"></div>
+        </div>
+    </section>
+
+</div>
+<script src="TIMETABLE/timetable.js"></script>
+<script src="TIMETABLE/render_timetable.js"></script>
+<script src="TIMETABLE/chart-integration.js"></script>
     <!-- <script src="TIMETABLE/time_dashboard.js"></script> -->
 </body>
 

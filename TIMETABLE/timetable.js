@@ -4,6 +4,7 @@ const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 const classesCount = {};
 
 const finalTimetables = [];
+// timetable[class][day][slot] = subject.name/ teacher/ lecture per week
 let timetable = [];
 // Track teacher availability: teacherSchedule[teacher][day][slot] = true/false
 let teacherSchedule = {};
@@ -15,13 +16,13 @@ let subjectCount = []; // subjectCount[class][subject] = number of lectures assi
 
 // Sample data - you can modify this
 const subjects = [
-    { name: 'Physics', teacher: 'Prof. Patel', lecturesPerWeek: 4 },
     { name: 'Biology', teacher: 'Prof. Mehta', lecturesPerWeek: 2 },
+    { name: 'Physics', teacher: 'Prof. Patel', lecturesPerWeek: 4 },
     { name: 'Chemistry', teacher: 'Prof. Kumar', lecturesPerWeek: 5 },
     { name: 'English', teacher: 'Prof. Desai', lecturesPerWeek: 3},
-    { name: 'Mathematics', teacher: 'Prof. Sharma', lecturesPerWeek: 4 },
     { name: 'Computer Science', teacher: 'Prof. Singh', lecturesPerWeek: 3 },
     { name: 'History', teacher: 'Prof. Reddy', lecturesPerWeek: 2 },
+    { name: 'Mathematics', teacher: 'Prof. Sharma', lecturesPerWeek: 4 },
     { name: 'Physical Education', teacher: 'Coach Verma', lecturesPerWeek: 3 },
 ];
 
@@ -194,6 +195,7 @@ const success = generateTimetable(0, 0, 0);
 if (success) {
     console.log("✅ Timetable generated successfully!\n");
     
+    renderWorkloadVisualization();
     // Display timetable for each class
     for (let c = 0; c < NUM_CLASSES; c++) {
         console.log(`\n${"=".repeat(80)}`);

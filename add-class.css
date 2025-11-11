@@ -13,6 +13,7 @@ header {
     background: white;
     color: blueviolet;
     padding: 20px;
+    border: solid 2px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -146,10 +147,12 @@ button:hover {
 }
 
 
-.header {
+.header > th {
     border-collapse: collapse;
     background-color: rgb(200, 200, 200);
-    
+    border: solid rgb(37, 37, 37) 1px;
+    text-align: center;
+    padding: 13px;
 }
 
 
@@ -182,3 +185,10 @@ button:hover {
     padding-right: 10px;
     background-color: white;
 }
+
+.ClassSubmit:hover {
+    transform: scale(1.02);
+    background-color: #d7d4d4;
+    transition: all 0.3s;
+}
+

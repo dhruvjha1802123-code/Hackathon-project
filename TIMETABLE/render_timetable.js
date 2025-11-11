@@ -11,6 +11,7 @@ const classForm = document.getElementById("classForm");
 const subjectTable = document.getElementById("subjectTable");
 const workloadSection = document.getElementById("WorkloadSection");
 const workload_content = document.getElementById("workload-content");
+const subject = document.getElementById("subjects")
 
 // ✅ New input fields for current and new values
 const curr_subject_input = document.querySelector(".curr_subject");
@@ -33,6 +34,7 @@ let selectedDayIndex = null;
 let selectedSlotIndex = null;
 
 generateTimetableButton.addEventListener("click", () => {
+    
     const selectedIndex = parseInt(classSelect.value);
     const selectedClass = timetable[selectedIndex];
     allTimetablesContainer.innerHTML = "";
@@ -258,7 +260,10 @@ classForm.addEventListener("submit", (e) => {
     }
 });
 
+
+
 if (generateTimetableButton.clicked !== true) {
     generateTimetableButton.click();
 }
 
+workloadSection.style.display("none")
