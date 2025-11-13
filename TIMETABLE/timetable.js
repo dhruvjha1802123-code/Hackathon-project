@@ -15,7 +15,7 @@ let NUM_CLASSES = 4;  // Number of classes to generate timetables for
 let subjectCount = []; // subjectCount[class][subject] = number of lectures assigned
 
 // Sample data - you can modify this
-const subjects = [
+let subjects = [
     { name: 'Biology', teacher: 'Prof. Mehta', lecturesPerWeek: 2 },
     { name: 'Physics', teacher: 'Prof. Patel', lecturesPerWeek: 4 },
     { name: 'Chemistry', teacher: 'Prof. Kumar', lecturesPerWeek: 5 },
@@ -272,3 +272,115 @@ const BestTimetable = []
 console.log(finalTimetables.length);
 // console.log(finalTimetables)
 
+// ============================================
+// SUBJECT SWAP FOR MULTIPLE TIMETABLES
+// ============================================
+
+// Store all generated timetables
+let allGeneratedTimetables = [];
+
+// Simple swap function
+function applySubjectSwaps(swapsList) {
+    const tempSubjects = JSON.parse(JSON.stringify(subjects));
+    
+    swapsList.forEach(swap => {
+        [tempSubjects[swap.index1], tempSubjects[swap.index2]] = 
+        [tempSubjects[swap.index2], tempSubjects[swap.index1]];
+    });
+    
+    return tempSubjects;
+}
+
+// Generate timetable with swap
+function generateWithManualSwap() {
+    const idx1 = parseInt(document.getElementById('swapIndex1').value);
+    const idx2 = parseInt(document.getElementById('swapIndex2').value);
+    
+    // Validate
+    if (idx1 === idx2) {
+        alert("❌ Cannot swap same subject with itself!");
+        return;
+    }
+    
+    if (idx1 < 0 || idx1 > 7 || idx2 < 0 || idx2 > 7) {
+        alert("❌ Index must be between 0 and 7");
+        return;
+    }
+    
+    // Apply swap
+    const swap = { index1: idx1, index2: idx2 };
+    const swappedSubjects = applySubjectSwaps([swap]);
+    
+    // Generate timetable
+    const originalSubjects = subjects;
+    subjects = swappedSubjects;
+    
+    initializeTimetable();
+    const success = generateTimetable(0, 0, 0);
+    
+    subjects = originalSubjects;
+    
+    if (success) {
+        console.log(`✅ Timetable generated with swap ${idx1} ↔ ${idx2}`);
+        alert(`✅ Timetable generated!\n\nSwapped: ${originalSubjects[idx1].name} ↔ ${originalSubjects[idx2].name}`);
+        renderWorkloadVisualization();
+    } else {
+        alert("❌ Could not generate timetable with this swap");
+    }
+}
+
+// Generate 4 predefined variants
+function generateTimetablesWithPredefinedSwaps() {
+    allGeneratedTimetables = [];
+    
+    const swapConfigurations = [
+        { name: "Original", swaps: [] },
+        { name: "Swap Biology ↔ Math", swaps: [{ index1: 0, index2: 6 }] },
+        { name: "Swap Physics ↔ CS", swaps: [{ index1: 1, index2: 4 }] },
+        { name: "Swap Chemistry ↔ PE", swaps: [{ index1: 2, index2: 7 }] }
+    ];
+    
+    console.log("\n" + "=".repeat(80));
+    console.log("GENERATING 4 TIMETABLE VARIANTS");
+    console.log("=".repeat(80));
+    
+    swapConfigurations.forEach((config, configIndex) => {
+        console.log(`\n📌 Generating: ${config.name}...`);
+        
+        let currentSubjects = subjects;
+        if (config.swaps.length > 0) {
+            currentSubjects = applySubjectSwaps(config.swaps);
+        }
+        
+        const originalSubjects = subjects;
+        subjects = currentSubjects;
+        
+        initializeTimetable();
+        let success = generateTimetable(0, 0, 0);
+        
+        subjects = originalSubjects;
+        
+        if (success) {
+            console.log(`✅ ${config.name} generated!`);
+            allGeneratedTimetables.push({
+                name: config.name,
+                timetable: JSON.parse(JSON.stringify(timetable)),
+                subjectOrder: currentSubjects.map(s => s.name),
+                swaps: config.swaps
+            });
+        } else {
+            console.log(`❌ Could not generate ${config.name}`);
+        }
+    });
+    
+    // Show results
+    console.log("\n" + "=".repeat(80));
+    console.log(`✅ Generated ${allGeneratedTimetables.length} timetable variants!`);
+    console.log("=".repeat(80));
+    
+    allGeneratedTimetables.forEach((tt, index) => {
+        console.log(`${index + 1}. ${tt.name}`);
+    });
+    
+    alert(`✅ Generated ${allGeneratedTimetables.length} timetable variants!\nCheck console for details.`);
+}
