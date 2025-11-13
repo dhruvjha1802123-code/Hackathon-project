@@ -192,3 +192,11 @@ button:hover {
     transition: all 0.3s;
 }
 
+.stat-label {
+    margin-top: 17px;
+    
+}
+
+.stat-value {
+    margin-top: 15px;
+}

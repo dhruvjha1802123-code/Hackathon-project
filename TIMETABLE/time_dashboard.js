@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const subjectsValueSpan = document.querySelector('.subjects-value');
   const conflictValueSpan = document.querySelector('.conflict-value');
 
+  conflictValueSpan.textContent = 0
   classValueSpan.textContent = NUM_CLASSES;
   teacherValueSpan.textContent = new Set(subjects.map(s => s.teacher)).size;
   subjectsValueSpan.textContent = subjects.length;

@@ -33,7 +33,7 @@ function initializeWorkloadChart() {
     const ctx = document.getElementById('workloadChart').getContext('2d');
     
     const chart = new Chart(ctx, {
-        type: 'bar',
+        type: 'bar', // can be bar, line, pie, doughnut
         data: {
             labels: teachers,
             datasets: [{
@@ -45,10 +45,10 @@ function initializeWorkloadChart() {
                 borderRadius: 6,
                 hoverBackgroundColor: 'rgba(0, 0, 0, 0.1)'
             }]
-        },
+        }, 
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             indexAxis: 'x',
             plugins: {
                 legend: {
@@ -74,7 +74,7 @@ function initializeWorkloadChart() {
                     },
                     title: {
                         display: true,
-                        text: 'Number of Lectures',
+                        text: 'Number of the Lectures',
                         font: { size: 12, weight: 'bold' }
                     }
                 },

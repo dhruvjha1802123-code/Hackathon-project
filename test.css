@@ -3,6 +3,7 @@ table {
     border-collapse: collapse;
 }
 
+
 .timetable-container {
     width: 80%;
     margin: auto;
@@ -83,8 +84,11 @@ button:hover {
     transition: all 0.3s, color 0.3s;
 }
 
+
 body {
-    background-color: #c0c0c0;
+    background: linear-gradient(135deg, #dbeafe, #fce7f3);
+    margin: 0;
+    padding: 0;
 }
 
 .dashboard-welcome {
