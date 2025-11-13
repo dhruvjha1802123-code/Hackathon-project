@@ -33,7 +33,7 @@ function initializeWorkloadChart() {
     const ctx = document.getElementById('workloadChart').getContext('2d');
     
     const chart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line', // here we can have line, pie, bar, doughnut, radar, 
         data: {
             labels: teachers,
             datasets: [{
